@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { Header } from './styles/components/Header';
+import { request } from './api';
+import { useState, useEffect } from 'react';
+import { Converter } from './styles/components/Converter';
 
-function App() {
+const App = () => {
+  const [cahRates, setCashRates] = useState([]);
+  const [currencies, setCurrencies] = useState(null);
+
+  useEffect(() => {
+    request('https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11').then(data => {
+      setCashRates(data)
+    });
+    request('https://api.exchangerate.host/latest').then(currencies => {
+      setCurrencies(currencies)
+    });
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      {cahRates.length && <Header currency={cahRates} />}
+      {currencies && <Converter currency={currencies} />}
+
     </div>
   );
 }

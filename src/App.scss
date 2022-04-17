@@ -1,0 +1,11 @@
+@import './styles/cssReset';
+@import './styles/header';
+@import './styles/courses';
+@import './styles/converter';
+
+.app {
+  padding-top: 20px;
+  background-color: rgb(78, 145, 121);
+  min-height: 100vh;
+  font-family: 'Anek Odia', sans-serif;
+}
