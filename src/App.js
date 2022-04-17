@@ -1,8 +1,8 @@
 import './App.scss';
-import { Header } from './styles/components/Header';
+import { Header } from './components/Header';
 import { request } from './api';
 import { useState, useEffect } from 'react';
-import { Converter } from './styles/components/Converter';
+import { Converter } from './components/Converter';
 
 const App = () => {
   const [cahRates, setCashRates] = useState([]);
